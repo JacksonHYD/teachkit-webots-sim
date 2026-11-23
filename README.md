@@ -4,7 +4,7 @@
 
 - 运行环境：Windows 10/11 64 位，Webots R2023b，Python 3.8 + robodyno 1.7.2 + OpenCV + NumPy
 - 模型库：老师提供的 robodyno_webots PROTO（未修改）；世界文件与控制器按实验指导书的关键代码编写
-- **免安装包**：见本仓库 **Releases** 页，下载 `训练师仿真实验_Windows免安装包.zip`（约 466 MB），内含 Webots 运行时与 Python，解压即用，无需安装、无需联网
+- **免安装包**：见本仓库 **Releases** 页，下载 `TeachKit_Labs_Windows_v1.0.zip`（约 466 MB），内含 Webots 运行时与 Python，解压即用，无需安装、无需联网
   - SHA-256：`B8CAD020462764C8118727DB429C17C07BE6C1B66D4A9B41F5A276601B41B141`
 
 ## 快速开始（拿到免安装包的人）
