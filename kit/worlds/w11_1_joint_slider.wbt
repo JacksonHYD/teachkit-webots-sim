@@ -1,0 +1,37 @@
+#VRML_SIM R2023b utf8
+EXTERNPROTO "../protos/robodyno_webots/robots/SixDofCollaborationRobot.proto"
+EXTERNPROTO "../protos/robodyno_webots/endEffector/CoordinateSystem.proto"
+
+WorldInfo {
+  basicTimeStep 32
+}
+Viewpoint {
+  orientation -0.151097 0.067557 0.986208 2.310998
+  position 0.8500 -0.9500 0.6500
+}
+Background {
+  skyColor [ 0.78 0.83 0.88 ]
+}
+DirectionalLight {
+  direction -0.35 -0.55 -0.75
+  intensity 2.4
+  ambientIntensity 0.5
+}
+Solid {
+  name "floor"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.86 0.87 0.9 roughness 0.8 metalness 0 }
+      geometry Box { size 1.2 1.2 0.02 }
+    }
+  ]
+  boundingObject Box { size 1.2 1.2 0.02 }
+}
+SixDofCollaborationRobot {
+  controller "11_1_joint_slider"
+  fixedBase TRUE
+  endChildren [
+    CoordinateSystem {}
+  ]
+
+}

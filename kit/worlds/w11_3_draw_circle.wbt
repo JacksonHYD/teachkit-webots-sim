@@ -1,0 +1,42 @@
+#VRML_SIM R2023b utf8
+EXTERNPROTO "../protos/robodyno_webots/robots/SixDofCollaborationRobot.proto"
+EXTERNPROTO "../protos/robodyno_webots/endEffector/HBPencil.proto"
+EXTERNPROTO "../protos/robodyno_webots/others/DrawingBoard.proto"
+
+WorldInfo {
+  basicTimeStep 32
+}
+Viewpoint {
+  orientation -0.199218 0.103840 0.974438 2.201671
+  position 0.6500 -0.7300 0.5900
+}
+Background {
+  skyColor [ 0.78 0.83 0.88 ]
+}
+DirectionalLight {
+  direction -0.35 -0.55 -0.75
+  intensity 2.4
+  ambientIntensity 0.5
+}
+Solid {
+  name "floor"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.86 0.87 0.9 roughness 0.8 metalness 0 }
+      geometry Box { size 1.2 1.2 0.02 }
+    }
+  ]
+  boundingObject Box { size 1.2 1.2 0.02 }
+}
+SixDofCollaborationRobot {
+  controller "11_3_draw_circle"
+  fixedBase TRUE
+  endChildren [
+    HBPencil { write FALSE }
+  ]
+
+}
+DrawingBoard {
+  translation 0.28 0 0.022
+  locked TRUE
+}

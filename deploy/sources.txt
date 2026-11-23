@@ -1,0 +1,20 @@
+软件来源与许可
+
+Webots R2023b：Cyberbotics
+https://github.com/cyberbotics/webots/releases/tag/R2023b
+Windows 官方安装包 SHA-256：
+2bf0d07ada66b7d9c5763fb6e986401edd0cd51925bc8c85e6c61464523c2ad7
+本包保留对应版本的 Windows 运行文件，不包含安装/卸载程序。
+Webots 许可见 runtime\webots\LICENSE.txt，其自带模型、纹理和第三方库遵循各自声明。
+Webots 资产许可：https://cyberbotics.com/webots_assets_license
+
+Python 3.8.10（Windows x64）：Python Software Foundation
+https://www.python.org/downloads/release/python-3810/
+许可见 runtime\python\LICENSE.txt。本包沿用实验使用的 Python 版本，不用于联网服务。
+
+Python 第三方依赖来自 PyPI：robodyno 1.7.2、NumPy 1.24.4、
+OpenCV 4.13.0.92 及其依赖。
+包元数据与许可保存在 runtime\python\Lib\site-packages 的各库分发目录。
+
+教研套装模型以原始文件内的来源和许可为准，见 kit\protos。
+指导书、报告模板和参考报告用于本次实验复现。

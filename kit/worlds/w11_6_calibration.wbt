@@ -1,0 +1,67 @@
+#VRML_SIM R2023b utf8
+EXTERNPROTO "../protos/robodyno_webots/robots/SixDofCollaborationRobot.proto"
+EXTERNPROTO "../protos/robodyno_webots/endEffector/Vacuum_Gripper.proto"
+EXTERNPROTO "../protos/robodyno_webots/objects/BaseBoard.proto"
+EXTERNPROTO "../protos/robodyno_webots/camera/RobodynoCamera.proto"
+
+WorldInfo {
+  basicTimeStep 32
+}
+Viewpoint {
+  orientation 0.000000 0.483077 0.875578 2.146563
+  position 0.5500 -0.5000 0.4200
+}
+Background {
+  skyColor [ 0.78 0.83 0.88 ]
+}
+DirectionalLight {
+  direction -0.35 -0.55 -0.75
+  intensity 2.4
+  ambientIntensity 0.5
+}
+Solid {
+  name "floor"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.86 0.87 0.9 roughness 0.8 metalness 0 }
+      geometry Box { size 1.2 1.2 0.02 }
+    }
+  ]
+  boundingObject Box { size 1.2 1.2 0.02 }
+}
+SixDofCollaborationRobot {
+  controller "11_6_calibration"
+  fixedBase TRUE
+  endChildren [
+    Vacuum_Gripper {}
+  ]
+
+}
+BaseBoard {}
+DEF red_block Solid {
+  translation 0.15 0 0.05
+  name "red_block"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.85 0.15 0.1 roughness 0.5 metalness 0 }
+
+      geometry Box {
+        size 0.05 0.05 0.05
+      }
+    }
+  ]
+  boundingObject Box {
+    size 0.05 0.05 0.05
+  }
+  physics Physics {}
+}
+Robot {
+  controller "11_6_all"
+  supervisor TRUE
+  children [
+    RobodynoCamera {
+      cameraId "camera"
+      translation 0.15 0.05 0.5
+    }
+  ]
+}

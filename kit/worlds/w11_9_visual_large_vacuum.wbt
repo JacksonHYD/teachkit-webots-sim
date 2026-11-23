@@ -1,0 +1,95 @@
+#VRML_SIM R2023b utf8
+EXTERNPROTO "../protos/robodyno_webots/robots/SixDofCollaborationRobot.proto"
+EXTERNPROTO "../protos/robodyno_webots/endEffector/Vacuum_Gripper.proto"
+EXTERNPROTO "../protos/robodyno_webots/objects/BaseBoard.proto"
+EXTERNPROTO "../protos/robodyno_webots/camera/RobodynoCamera.proto"
+EXTERNPROTO "../protos/robodyno_webots/conveyorBelt/ConveyorBelt.proto"
+
+WorldInfo {
+  basicTimeStep 32
+}
+Viewpoint {
+  orientation 0.000000 0.496139 0.868243 2.125917
+  position 0.6200 -0.5500 0.5000
+}
+Background {
+  skyColor [ 0.78 0.83 0.88 ]
+}
+DirectionalLight {
+  direction -0.35 -0.55 -0.75
+  intensity 2.4
+  ambientIntensity 0.5
+}
+Solid {
+  name "floor"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.86 0.87 0.9 roughness 0.8 metalness 0 }
+      geometry Box { size 1.2 1.2 0.02 }
+    }
+  ]
+  boundingObject Box { size 1.2 1.2 0.02 }
+}
+SixDofCollaborationRobot {
+  controller "11_9_visual_large_vacuum"
+  fixedBase TRUE
+  endChildren [
+    Vacuum_Gripper {}
+  ]
+
+}
+BaseBoard {}
+ConveyorBelt {
+  controller "11_9_shuttle"
+  motor_id "0x22"
+  translation 0 0.3 0
+  supervisor TRUE
+}
+Solid {
+  name "belt support"
+  translation -0.005 0.25 0.023
+  boundingObject Box { size 0.73 0.10 0.006 }
+}
+DEF cube_a Solid {
+  translation -0.22 0.25 0.046
+  name "cube_a"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.85 0.15 0.1 roughness 0.5 metalness 0 }
+
+      geometry Box {
+        size 0.04 0.04 0.04
+      }
+    }
+  ]
+  boundingObject Box {
+    size 0.04 0.04 0.04
+  }
+  physics Physics {}
+}
+DEF cube_b Solid {
+  translation -0.33 0.25 0.046
+  name "cube_b"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.15 0.3 0.9 roughness 0.5 metalness 0 }
+
+      geometry Box {
+        size 0.04 0.04 0.04
+      }
+    }
+  ]
+  boundingObject Box {
+    size 0.04 0.04 0.04
+  }
+  physics Physics {}
+}
+Robot {
+  controller "11_9_camera"
+  children [
+    RobodynoCamera {
+      cameraId "camera"
+      translation -0.07 0.25 0.72
+    }
+  ]
+}

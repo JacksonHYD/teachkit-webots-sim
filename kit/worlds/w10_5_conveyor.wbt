@@ -1,0 +1,61 @@
+#VRML_SIM R2023b utf8
+EXTERNPROTO "../protos/robodyno_webots/conveyorBelt/ConveyorBelt.proto"
+
+WorldInfo {
+  basicTimeStep 32
+}
+Viewpoint {
+  orientation 0.000000 0.666213 0.745761 2.327729
+  position 0.9500 -0.7500 0.7500
+}
+Background {
+  skyColor [ 0.78 0.83 0.88 ]
+}
+DirectionalLight {
+  direction -0.35 -0.55 -0.75
+  intensity 2.4
+  ambientIntensity 0.5
+}
+Solid {
+  name "floor"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.86 0.87 0.9 roughness 0.8 metalness 0 }
+      geometry Box { size 1.2 1.2 0.02 }
+    }
+  ]
+  boundingObject Box { size 1.2 1.2 0.02 }
+}
+ConveyorBelt {
+  controller "10_5_conveyor"
+  motor_id "0x22"
+  supervisor TRUE
+}
+DEF WORKPIECES Pose {
+  children [
+DEF cube_a Pose {
+  translation -0.2725 -0.05 0.086
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.85 0.15 0.1 roughness 0.5 metalness 0 }
+
+      geometry Box {
+        size 0.04 0.04 0.04
+      }
+    }
+  ]
+}
+DEF cube_b Pose {
+  translation -0.3375 -0.05 0.086
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.15 0.3 0.9 roughness 0.5 metalness 0 }
+
+      geometry Box {
+        size 0.04 0.04 0.04
+      }
+    }
+  ]
+}
+  ]
+}

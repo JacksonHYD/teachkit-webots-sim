@@ -1,0 +1,6 @@
+logs/
+screenshots/
+__pycache__/
+*.pyc
+*.zip
+*.pdf

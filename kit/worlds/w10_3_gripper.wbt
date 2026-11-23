@@ -1,0 +1,43 @@
+#VRML_SIM R2023b utf8
+EXTERNPROTO "../protos/robodyno_webots/endEffector/RobotHand.proto"
+
+WorldInfo {
+  basicTimeStep 32
+}
+Viewpoint {
+  orientation 0.000000 0.287348 0.957826 2.397186
+  position 0.1700 -0.1500 0.1000
+}
+Background {
+  skyColor [ 0.78 0.83 0.88 ]
+}
+DirectionalLight {
+  direction -0.35 -0.55 -0.75
+  intensity 2.4
+  ambientIntensity 0.5
+}
+Solid {
+  name "floor"
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.86 0.87 0.9 roughness 0.8 metalness 0 }
+      geometry Box { size 1.2 1.2 0.02 }
+    }
+  ]
+  boundingObject Box { size 1.2 1.2 0.02 }
+}
+Robot {
+  controller "10_3_gripper"
+  children [
+    Pose {
+      translation 0 0 0.08
+      rotation 1 0 0 3.14159
+      children [
+        RobotHand {
+          motor_id "0x1A"
+          maxPosition 25
+        }
+      ]
+    }
+  ]
+}
