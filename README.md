@@ -4,12 +4,20 @@
 
 - 运行环境：Windows 10/11 64 位，Webots R2023b，Python 3.8 + robodyno 1.7.2 + OpenCV + NumPy
 - 模型库：老师提供的 robodyno_webots PROTO（未修改）；世界文件与控制器按实验指导书的关键代码编写
-- **免安装包**：见本仓库 **Releases** 页，下载 `TeachKit_Labs_Windows_v1.0.zip`（约 466 MB），内含 Webots 运行时与 Python，解压即用，无需安装、无需联网
-  - SHA-256：`B8CAD020462764C8118727DB429C17C07BE6C1B66D4A9B41F5A276601B41B141`
+- **免安装包**：见本仓库 **Releases** 页，下载 `TeachKit_Labs_Windows_v1.0.1.zip`（约 464 MiB），内含 Webots 运行时与 Python，解压即用，无需安装、无需联网
+  - 支持含中文的安装路径（v1.0.1 修复，见下文「版本说明」）
+  - SHA-256：`bd0dc7c441774466caaf2b322563d3a7c38e1d467421d5d37a59739a4d71b3e9`
+
+## 版本说明
+
+| 版本 | 变化 |
+|---|---|
+| v1.0.1 | **修复中文路径下所有控制器秒退**（`controller exited with status: 1`，报 `Could not find module ...\Controller.dll`）。原因是 Webots 把 `WEBOTS_HOME` 传给控制器子进程时中文路径被双重编码；已改为从 `wb.py` 自身位置定位 `Controller.dll`，见 `deploy/patches/wb.py`。 |
+| v1.0 | 首个可运行版本；**仅适用于纯英文路径**。 |
 
 ## 快速开始（拿到免安装包的人）
 
-1. 解压 ZIP 到短路径（如 `C:\Lab`），不要直接在压缩包预览窗口里运行；
+1. 解压 ZIP 到短路径（如 `C:\Lab`），不要直接在压缩包预览窗口里运行；路径带中文也可以（v1.0.1 起已适配）；
 2. 双击 `RoboKit_Labs\开始实验.cmd`，在启动台里选择实验 →「开始仿真」；
 3. 观察 Webots 三维视图与底部 Console，按需自行截图（建议全屏，保留右下角系统时间）；
 4. 换实验前先关闭当前 Webots 窗口；**11.6 手眼标定必须先于 11.7 / 11.8 运行**（包内已附一份预置标定，直接看 11.7/11.8 也不会卡住，复现实验请自己先跑 11.6）。
@@ -42,6 +50,7 @@ kit/worlds        16 个实验世界（.wbt）
 kit/controllers   各实验控制器（Python）+ 共用模块 common/
 kit/shared        eye2arm.json（11.6 手眼标定结果，11.7/11.8 使用）
 deploy            打包与启动台脚本（build.py / launch.py / labs.py / start.cmd / guide.txt）
+deploy/patches    对 Webots 官方 Python 控制器的补丁（wb.py：中文路径下定位 Controller.dll）
 docs              软件来源与许可说明
 使用说明.md       面向使用者的完整操作说明（与包内文件一致）
 ```

@@ -58,6 +58,16 @@ def build(stage, python_home, webots_home, webots_license, template):
         shutil.copytree(webots_home / directory, runtime / 'webots' / directory, ignore=exclude)
     shutil.copy2(webots_license, runtime / 'webots' / 'LICENSE.txt')
 
+    # Webots 把 WEBOTS_HOME 传给控制器子进程时，中文路径会被双重编码成乱码，
+    # 导致 controller 包找不到 Controller.dll、所有控制器秒退。用可从 __file__
+    # 推出库目录的版本替换官方 wb.py（见 deploy/patches/wb.py）。
+    wb_py = runtime / 'webots' / 'lib' / 'controller' / 'python' / 'controller' / 'wb.py'
+    if not wb_py.is_file():
+        raise FileNotFoundError(wb_py)
+    shutil.copy2(HERE / 'patches' / 'wb.py', wb_py)
+    if '_controller_lib_dir' not in wb_py.read_text(encoding='utf-8'):
+        raise RuntimeError('wb.py patch not applied: %s' % wb_py)
+
     for filename in ('launch.py', 'labs.py'):
         shutil.copy2(HERE / filename, tools)
     (stage / '开始实验.cmd').write_bytes((HERE / 'start.cmd').read_bytes().replace(b'\r\n', b'\n').replace(b'\n', b'\r\n'))
