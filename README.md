@@ -1,5 +1,7 @@
 # 训练师仿真实验 · 第十、十一章（Webots）
 
+实验复现与 Windows 免安装包维护：[JacksonHYD](https://github.com/JacksonHYD)｜[源码仓库](https://github.com/JacksonHYD/teachkit-webots-sim)
+
 「训练师」全类型模块化机器人教研套装 —— **仿真设计篇 第十章（10.1–10.6）与第十一章（11.1–11.10）**，共 16 个实验的 Webots 工程与免安装实验包。
 
 - 运行环境：Windows 10/11 64 位，Webots R2023b，Python 3.8 + robodyno 1.7.2 + OpenCV + NumPy
